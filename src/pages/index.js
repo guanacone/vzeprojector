@@ -10,6 +10,16 @@ const StyledDiv = styled.div`
   section {
     display: flex;
     justify-content: center;
+    padding-top: 20px;
+  }
+
+  iframe {
+    display: block;
+    background: #000;
+    border: none;
+    height: 90vh;
+    width: 100vw;
+    padding-bottom: 50px;
   }
 
   .image-container, .text-container {
@@ -102,6 +112,9 @@ const Home = ({ data }) => {
   const images = [data.image1, data.image2, data.image3].map(getImage);
   return (
     <StyledDiv>
+      <section>
+        <iframe src='https://www.youtube.com/embed/Srdg3yYZaho?controls=0' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe>
+      </section>
       <section>
         <div className='image-container'>
           <GatsbyImage image={images[0]} alt='picture' />
