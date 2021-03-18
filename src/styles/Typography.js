@@ -8,6 +8,7 @@ const Typography = createGlobalStyle`
     h2 {
         font-family: 'Titillium Web', sans-serif;
         font-weight: 700;
+        font-size: 3.5rem;
         color: #7e7e7e;
     }
 

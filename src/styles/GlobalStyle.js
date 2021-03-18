@@ -1,6 +1,10 @@
 import { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
+    :root {
+        --blue: #00ceff;
+    }
+
     html {
         font-size: 10px;
     }
