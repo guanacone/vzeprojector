@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -15,6 +15,7 @@ const StyledNav = styled.nav`
   display: flex;
   justify-content: space-around;
   align-items: center;
+  transition: opacity 0.5s ease-in;
   
   &.sticky {
     position: fixed;
@@ -25,6 +26,11 @@ const StyledNav = styled.nav`
       to {top: 0}
     };
   }
+
+  &.up {
+    opacity: 0;
+  }
+
   .gatsby-image-wrapper {
     display: flex;
     justify-content: center;
@@ -43,15 +49,30 @@ const StyledNav = styled.nav`
 
 const NavBar = () => {
   const [isSticky, setIsSticky] = useState(false);
-  window.onscroll = () => {
-    if (window.pageYOffset > window.innerHeight) {
-      setIsSticky(true);
-    } else {
-      setIsSticky(false);
-    }
-  };
+  const [isScrollingUp, setIsScrollingUp] = useState(false);
+
+  useEffect(() => {
+    let lastScrollY = window.pageYOffset;
+
+    const updateIsScrollingUp = () => {
+      const scrollY = window.pageYOffset;
+      setIsScrollingUp(scrollY < lastScrollY);
+      lastScrollY = scrollY > 0 ? scrollY : 0;
+      if (window.pageYOffset > window.innerHeight) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener('scroll', updateIsScrollingUp);
+    console.log(isScrollingUp);
+
+    return () => window.removeEventListener('scroll', updateIsScrollingUp);
+  }, [isScrollingUp, isSticky]);
+
   return (
-    <StyledNav className={isSticky ? 'sticky' : null}>
+    <StyledNav className={`${isSticky ? 'sticky' : ''} ${isScrollingUp && isSticky ? 'up' : ''}`}>
       <div>
         <Link to='#'>
           <FontAwesomeIcon className='icon' icon={faBars}/>
