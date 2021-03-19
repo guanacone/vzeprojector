@@ -1,7 +1,7 @@
 {
-  "name": "gatsby_boilerplate",
+  "name": "vzeprojector",
   "private": true,
-  "description": "A simplified bare-bones starter for Gatsby",
+  "description": "vze projector e-commerce site",
   "version": "0.1.0",
   "license": "0BSD",
   "scripts": {
@@ -16,11 +16,18 @@
     "upgrade-deps": "upgrade-deps"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "1.2.35",
+    "@fortawesome/free-solid-svg-icons": "5.15.3",
+    "@fortawesome/react-fontawesome": "0.1.14",
     "babel-plugin-styled-components": "1.12.0",
     "gatsby": "3.0.4",
     "gatsby-plugin-google-fonts": "1.0.1",
+    "gatsby-plugin-image": "1.0.1",
     "gatsby-plugin-layout": "2.0.0",
+    "gatsby-plugin-sharp": "3.0.1",
     "gatsby-plugin-styled-components": "4.0.0",
+    "gatsby-source-filesystem": "3.0.0",
+    "gatsby-transformer-sharp": "3.0.0",
     "normalize.css": "8.0.1",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -32,9 +39,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/guanacone/gatsby_boilerplate"
+    "url": "https://github.com/guanacone/vzeprojector"
   },
   "bugs": {
-    "url": "https://github.com/guanacone/gatsby_boilerplate/issues"
+    "url": "https://github.com/guanacone/vzeprojector/issues"
   }
 }
