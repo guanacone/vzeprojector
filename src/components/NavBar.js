@@ -5,6 +5,11 @@ import { StaticImage } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
+const Filler = styled.div`
+  height: 8vh;
+  display: ${(props) => (props.isSticky ? 'block' : 'none')};
+`;
+
 const StyledNav = styled.nav`
   box-sizing: border-box;
   width: 100%;
@@ -72,24 +77,26 @@ const NavBar = () => {
   }, [isScrollingUp, isSticky]);
 
   return (
-    <StyledNav className={`${isSticky ? 'sticky' : ''} ${isScrollingUp && isSticky ? 'up' : ''}`}>
-      <div>
-        <Link to='#'>
-          <FontAwesomeIcon className='icon' icon={faBars}/>
-        </Link>
-      </div>
-      <div>
-        <Link to='#'>
-          <StaticImage src='../assets/images/vze_logo.png' height={50}/>
-        </Link>
-      </div>
-      <div>
-        <Link to='#'>
-          <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
-        </Link>
-      </div>
-
-    </StyledNav>
+    <>
+      <Filler isSticky={isSticky}/>
+      <StyledNav className={`${isSticky ? 'sticky' : ''} ${isScrollingUp && isSticky ? 'up' : ''}`}>
+        <div>
+          <Link to='#'>
+            <FontAwesomeIcon className='icon' icon={faBars}/>
+          </Link>
+        </div>
+        <div>
+          <Link to='#'>
+            <StaticImage src='../assets/images/vze_logo.png' height={50}/>
+          </Link>
+        </div>
+        <div>
+          <Link to='#'>
+            <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
+          </Link>
+        </div>
+      </StyledNav>
+    </>
   );
 };
 
