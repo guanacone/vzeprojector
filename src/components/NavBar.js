@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import Cart from './Cart';
 
 const Filler = styled.div`
   height: 8vh;
@@ -26,6 +27,7 @@ const StyledNav = styled.nav`
     background: transparent;
     border: none;
     outline: none;
+    cursor: pointer;
   }
   
   &.sticky {
@@ -61,6 +63,7 @@ const StyledNav = styled.nav`
 const NavBar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(true);
 
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
@@ -77,10 +80,17 @@ const NavBar = () => {
     };
 
     window.addEventListener('scroll', updateIsScrollingUp);
-    console.log(isScrollingUp);
 
     return () => window.removeEventListener('scroll', updateIsScrollingUp);
   }, [isScrollingUp, isSticky]);
+
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.setAttribute('style', 'position: fixed; left: 0; right: 0');
+    } else {
+      document.body.setAttribute('style', '');
+    }
+  }, [isCartOpen]);
 
   return (
     <>
@@ -88,20 +98,21 @@ const NavBar = () => {
       <StyledNav className={`${isSticky ? 'sticky' : ''} ${isScrollingUp && isSticky ? 'up' : ''}`}>
         <div>
           <button>
-            <FontAwesomeIcon className='icon' icon={faBars}/>
+            <FontAwesomeIcon className='icon' icon={faBars} onClick={() => setIsCartOpen(!isCartOpen)}/>
           </button>
         </div>
         <div>
           <Link to='/'>
-            <StaticImage src='../assets/images/vze_logo.png' height={50}/>
+            <StaticImage src='../assets/images/vze_logo.png' height={50} alt='vze projector logo'/>
           </Link>
         </div>
         <div>
           <button>
-            <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
+            <FontAwesomeIcon className='icon' icon={faShoppingCart} onClick={() => setIsCartOpen(!isCartOpen)}/>
           </button>
         </div>
       </StyledNav>
+      <Cart isCartOpen={isCartOpen}/>
     </>
   );
 };
