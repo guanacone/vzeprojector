@@ -10,16 +10,12 @@ const StyledDiv = styled.div`
   section {
     display: flex;
     justify-content: center;
-    padding-top: 20px;
+    padding-bottom: 20px;
   }
 
   iframe {
-    display: block;
-    background: #000;
-    border: none;
-    height: 90vh;
+    height: 92vh;
     width: 100vw;
-    padding-bottom: 50px;
   }
 
   .image-container, .text-container {

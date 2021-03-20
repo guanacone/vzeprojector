@@ -26,7 +26,7 @@ const StyledLink = styled(Link)`
 
 const BuyNowLink = () => {
   return (
-    <StyledLink>Buy Now!</StyledLink>
+    <StyledLink to='#'>Buy Now!</StyledLink>
   );
 };
 
