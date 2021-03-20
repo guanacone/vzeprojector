@@ -21,6 +21,12 @@ const StyledNav = styled.nav`
   justify-content: space-around;
   align-items: center;
   transition: opacity 0.5s ease-in;
+
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+  }
   
   &.sticky {
     position: fixed;
@@ -81,19 +87,19 @@ const NavBar = () => {
       <Filler isSticky={isSticky}/>
       <StyledNav className={`${isSticky ? 'sticky' : ''} ${isScrollingUp && isSticky ? 'up' : ''}`}>
         <div>
-          <Link to='#'>
+          <button>
             <FontAwesomeIcon className='icon' icon={faBars}/>
-          </Link>
+          </button>
         </div>
         <div>
-          <Link to='#'>
+          <Link to='/'>
             <StaticImage src='../assets/images/vze_logo.png' height={50}/>
           </Link>
         </div>
         <div>
-          <Link to='#'>
+          <button>
             <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
-          </Link>
+          </button>
         </div>
       </StyledNav>
     </>
