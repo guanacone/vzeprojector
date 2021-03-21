@@ -112,7 +112,6 @@ const NavBar = () => {
   useEffect(() => {
     const clickHandler = ({ target }) => {
       if (buttonRef.current.contains(target)) {
-        console.log({ iconRef });
         iconRef.current.click();
       }
     };
@@ -130,7 +129,7 @@ const NavBar = () => {
         ${isScrollingUp && isSticky ? 'up' : ''}
       `}>
         <div>
-          <button ref={iconRef} onClick={() => setIsCartOpen(!isCartOpen)}>
+          <button>
             <FontAwesomeIcon className='icon' icon={faBars}/>
           </button>
         </div>
@@ -140,7 +139,7 @@ const NavBar = () => {
           </Link>
         </div>
         <div>
-          <button>
+          <button ref={iconRef} onClick={() => setIsCartOpen(!isCartOpen)}>
             <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
           </button>
         </div>
