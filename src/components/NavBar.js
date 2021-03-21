@@ -17,9 +17,11 @@ const MaskerDiv = styled.div`
   position: fixed;
   top: 0;
   background: black;
-  opacity: 0.5;
-  z-index: 1;
+  opacity: 0.7;
   display: none;
+  &.active {
+    display: block;
+  }
 `;
 
 const StyledNav = styled.nav`
@@ -57,12 +59,6 @@ const StyledNav = styled.nav`
 
   &.cart-open {
     transform: translate(-40vw)
-  }
-
-  .gatsby-image-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 5px;
   }
 
   .icon {
@@ -122,7 +118,7 @@ const NavBar = () => {
   return (
     <>
       <Cart buttonRef={buttonRef} isCartOpen={isCartOpen}/>
-      <MaskerDiv/>
+      <MaskerDiv className={isCartOpen ? 'active' : ''} />
       <FillerDiv isSticky={isSticky}/>
       <StyledNav className={`
         ${isSticky ? 'sticky' : ''}
