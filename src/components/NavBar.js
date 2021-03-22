@@ -4,10 +4,25 @@ import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import Cart from './Cart';
 
-const Filler = styled.div`
+const FillerDiv = styled.div`
   height: 8vh;
   display: ${(props) => (props.isSticky ? 'block' : 'none')};
+`;
+
+const MaskerDiv = styled.div`
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  background: black;
+  opacity: 0.7;
+  display: none;
+  z-index: 5;
+  &.active {
+    display: block;
+  }
 `;
 
 const StyledNav = styled.nav`
@@ -21,6 +36,13 @@ const StyledNav = styled.nav`
   justify-content: space-around;
   align-items: center;
   transition: opacity 0.5s ease-in;
+
+  button {
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+  }
   
   &.sticky {
     position: fixed;
@@ -34,12 +56,11 @@ const StyledNav = styled.nav`
 
   &.up {
     opacity: 0;
+    pointer-events: none;
   }
 
-  .gatsby-image-wrapper {
-    display: flex;
-    justify-content: center;
-    margin: 5px;
+  &.cart-open {
+    transform: translate(-40vw)
   }
 
   .icon {
@@ -55,7 +76,8 @@ const StyledNav = styled.nav`
 const NavBar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
-
+  const [isCartOpen, setIsCartOpen] = useState(false);
+  // NavBar scroll effect
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
 
@@ -71,29 +93,41 @@ const NavBar = () => {
     };
 
     window.addEventListener('scroll', updateIsScrollingUp);
-    console.log(isScrollingUp);
 
     return () => window.removeEventListener('scroll', updateIsScrollingUp);
   }, [isScrollingUp, isSticky]);
+  // Disable scroll when cart open
+  useEffect(() => {
+    if (isCartOpen) {
+      document.body.setAttribute('style', 'overflow: hidden;');
+    } else {
+      document.body.setAttribute('style', '');
+    }
+  }, [isCartOpen]);
 
   return (
     <>
-      <Filler isSticky={isSticky}/>
-      <StyledNav className={`${isSticky ? 'sticky' : ''} ${isScrollingUp && isSticky ? 'up' : ''}`}>
+      <Cart close={() => setIsCartOpen(false)} isCartOpen={isCartOpen}/>
+      <MaskerDiv className={isCartOpen ? 'active' : ''} />
+      <FillerDiv isSticky={isSticky}/>
+      <StyledNav className={`
+        ${isSticky ? 'sticky' : ''}
+        ${isScrollingUp && isSticky ? 'up' : ''}
+      `}>
         <div>
-          <Link to='#'>
+          <button>
             <FontAwesomeIcon className='icon' icon={faBars}/>
+          </button>
+        </div>
+        <div>
+          <Link to='/'>
+            <StaticImage src='../assets/images/vze_logo.png' height={50} alt='vze projector logo'/>
           </Link>
         </div>
         <div>
-          <Link to='#'>
-            <StaticImage src='../assets/images/vze_logo.png' height={50}/>
-          </Link>
-        </div>
-        <div>
-          <Link to='#'>
+          <button onClick={() => setIsCartOpen(true)}>
             <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
-          </Link>
+          </button>
         </div>
       </StyledNav>
     </>
