@@ -56,6 +56,7 @@ const StyledNav = styled.nav`
 
   &.up {
     opacity: 0;
+    pointer-events: none;
   }
 
   &.cart-open {
