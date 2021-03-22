@@ -6,20 +6,20 @@ const StyledDiv = styled.div`
     top: 0;
     width: 40vw;
     height: 100vh;
-    background: red;
+    background: grey;
     right: ${(props) => (props.isCartOpen ? 0 : '-40vw')};
     transition: all 0.5s ease-in-out;
-    z-index: 1;
+    z-index: 10;
 
     div {
       cursor: pointer;
-      width: 45px;
-      height: 8px;
+      width: 40px;
+      height: 6px;
       border-radius: 10px;
       transition: all 0.3s linear;
-      background: green;
+      background: white;
       margin: 15px;
-      transform-origin: 6px;
+      transform-origin: 5px;
       &:nth-child(1) {
       transform: rotate(45deg);
       }
@@ -41,10 +41,10 @@ const StyledDiv = styled.div`
 
 `;
 
-const Cart = ({ isCartOpen, buttonRef }) => {
+const Cart = ({ isCartOpen, close }) => {
   return (
     <StyledDiv isCartOpen={isCartOpen}>
-      <button ref={buttonRef}>
+      <button onClick={close}>
         <div></div>
         <div></div>
       </button>

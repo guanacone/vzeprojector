@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -19,6 +19,7 @@ const MaskerDiv = styled.div`
   background: black;
   opacity: 0.7;
   display: none;
+  z-index: 5;
   &.active {
     display: block;
   }
@@ -75,8 +76,6 @@ const NavBar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
-  const buttonRef = useRef(null);
-  const iconRef = useRef(null);
   // NavBar scroll effect
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
@@ -99,25 +98,15 @@ const NavBar = () => {
   // Disable scroll when cart open
   useEffect(() => {
     if (isCartOpen) {
-      document.body.setAttribute('style', 'position: fixed; left: 0; right: 0');
+      document.body.setAttribute('style', 'overflow: hidden;');
     } else {
       document.body.setAttribute('style', '');
     }
   }, [isCartOpen]);
-  // Close cart when click on cross
-  useEffect(() => {
-    const clickHandler = ({ target }) => {
-      if (buttonRef.current.contains(target)) {
-        iconRef.current.click();
-      }
-    };
-    document.addEventListener('click', clickHandler);
 
-    return () => document.removeEventListener('click', clickHandler);
-  }, []);
   return (
     <>
-      <Cart buttonRef={buttonRef} isCartOpen={isCartOpen}/>
+      <Cart close={() => setIsCartOpen(false)} isCartOpen={isCartOpen}/>
       <MaskerDiv className={isCartOpen ? 'active' : ''} />
       <FillerDiv isSticky={isSticky}/>
       <StyledNav className={`
@@ -135,7 +124,7 @@ const NavBar = () => {
           </Link>
         </div>
         <div>
-          <button ref={iconRef} onClick={() => setIsCartOpen(!isCartOpen)}>
+          <button onClick={() => setIsCartOpen(true)}>
             <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
           </button>
         </div>
