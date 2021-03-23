@@ -29,6 +29,7 @@ const StyledNav = styled.nav`
   box-sizing: border-box;
   width: 100%;
   height: 8vh;
+  padding-top: 5px;
   background: black;
   z-index: 1;
   min-height: 60px;

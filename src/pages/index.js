@@ -169,36 +169,36 @@ export default Home;
 
 export const pageQuery = graphql`
   query {
-    image1: file(
-    relativePath: {eq: "assets/images/laser-smart-projector-pico_1.webp"}
-  ) {
-    childImageSharp {
-      gatsbyImageData(
-        placeholder: BLURRED
-        aspectRatio: 1.2
-      )
+      image1: file(
+      relativePath: {eq: "assets/images/laser-smart-projector-pico_1.webp"}
+    ) {
+      childImageSharp {
+        gatsbyImageData(
+          placeholder: BLURRED
+          aspectRatio: 1.2
+        )
+      }
     }
-  }
-  image2: file(
-    relativePath: {eq: "assets/images/laser-smart-projector-pico_2.webp"}
-  ) {
-    childImageSharp {
-      gatsbyImageData(
-        placeholder: BLURRED
-        aspectRatio: 1.2
-      )
+    image2: file(
+      relativePath: {eq: "assets/images/laser-smart-projector-pico_2.webp"}
+    ) {
+      childImageSharp {
+        gatsbyImageData(
+          placeholder: BLURRED
+          aspectRatio: 1.2
+        )
+      }
     }
-  }
-  image3: file(
-    relativePath: {eq: "assets/images/laser-smart-projector-pico_3.webp"}
-  ) {
-    childImageSharp {
-      gatsbyImageData(
-        placeholder: BLURRED
-        width: 650
-        aspectRatio: 0.9
-      )
+    image3: file(
+      relativePath: {eq: "assets/images/laser-smart-projector-pico_3.webp"}
+    ) {
+      childImageSharp {
+        gatsbyImageData(
+          placeholder: BLURRED
+          width: 650
+          aspectRatio: 0.9
+        )
+      }
     }
-  }
   }
 `;
