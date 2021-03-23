@@ -2,9 +2,11 @@ import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
 import BuyNowLink from '../components/BuyNowLink';
+import AddToCartButton from '../components/AddToCartButton';
+import GlobalContext from '../components/GlobalContext';
 
 const StyledDiv = styled.div`
   section {
@@ -42,24 +44,7 @@ const StyledDiv = styled.div`
         margin: 0 0 20px;
       }
     }
-    button {
-      background-color: var(--blue);
-      outline: 0.5px solid var(--blue);
-      border: none;
-      font-size: 1.2rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-align: center;
-      padding: 10px 30px;
-      line-height: 2.2;
-      vertical-align: middle;
-      cursor: pointer;
-      transition: outline 0.1s linear;
-      margin-top: 10px;
-      &:hover {
-        outline: 2px solid var(--blue);
-      }
-    }
+
     a {
       color: var(--blue);
       text-decoration: none;
@@ -105,6 +90,7 @@ const StyledDiv = styled.div`
 `;
 
 const Home = ({ data }) => {
+  const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
   const images = [data.image1, data.image2, data.image3].map(getImage);
   return (
     <StyledDiv>
@@ -154,7 +140,7 @@ const Home = ({ data }) => {
             <span className='promo-price'>$299.95</span>
             <span className='regular-price'>$350.00</span>
           </div>
-          <button>ADD TO CART</button>
+          <AddToCartButton setIsCartOpen={setIsCartOpen}/>
           <Link to='#'>
             <FontAwesomeIcon className='icon' icon={faList}/>
             <span>FULL DETAILS</span>
