@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Cart from './Cart';
+import GlobalContext from './GlobalContext';
 
 const FillerDiv = styled.div`
   height: 8vh;
@@ -29,6 +30,7 @@ const StyledNav = styled.nav`
   box-sizing: border-box;
   width: 100%;
   height: 8vh;
+  padding-top: 5px;
   background: black;
   z-index: 1;
   min-height: 60px;
@@ -76,7 +78,7 @@ const StyledNav = styled.nav`
 const NavBar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
   // NavBar scroll effect
   useEffect(() => {
     let lastScrollY = window.pageYOffset;

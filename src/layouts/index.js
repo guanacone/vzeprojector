@@ -3,6 +3,7 @@ import 'normalize.css';
 import GlobalStyle from '../styles/GlobalStyle';
 import Typography from '../styles/Typography';
 import NavBar from '../components/NavBar';
+import { GlobalProvider } from '../components/GlobalContext';
 
 const Layout = ({ children }) => {
   const [hasMounted, setHasMounted] = React.useState(false);
@@ -17,10 +18,12 @@ const Layout = ({ children }) => {
 
   return (
     <div>
-      <GlobalStyle/>
-      <Typography/>
-      <NavBar/>
-      {children}
+      <GlobalProvider>
+        <GlobalStyle/>
+        <Typography/>
+        <NavBar/>
+        {children}
+      </GlobalProvider>
     </div>
   );
 };
