@@ -20,10 +20,11 @@ const StyledDiv = styled.div`
   }
 
   video {
+    background: black;
     :focus { outline:none; }
     &#video {
       min-width: 100%;
-      min-height: 100%;
+      max-height: 92vh;
     }
   }
 
