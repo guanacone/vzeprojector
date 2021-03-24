@@ -90,12 +90,12 @@ const StyledDiv = styled.div`
 `;
 
 const Home = ({ data }) => {
-  const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
+  const [, setIsCartOpen] = useContext(GlobalContext);
   const images = [data.image1, data.image2, data.image3].map(getImage);
   return (
     <StyledDiv>
       <section>
-        <iframe src='https://www.youtube.com/embed/Srdg3yYZaho?controls=0' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'></iframe>
+        <iframe src='https://www.youtube.com/embed/Srdg3yYZaho?controls=0' title='YouTube video player' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
       </section>
       <section>
         <div className='image-container'>
