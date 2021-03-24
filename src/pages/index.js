@@ -7,17 +7,24 @@ import styled from 'styled-components';
 import BuyNowLink from '../components/BuyNowLink';
 import AddToCartButton from '../components/AddToCartButton';
 import GlobalContext from '../components/GlobalContext';
+import Video from '../assets/video/splashscreen.mp4';
 
 const StyledDiv = styled.div`
   section {
     display: flex;
     justify-content: center;
     padding-bottom: 20px;
+    &#video {
+      height: 92vh;
+    }
   }
 
-  iframe {
-    height: 92vh;
-    width: 100vw;
+  video {
+    :focus { outline:none; }
+    &#video {
+      min-width: 100%;
+      min-height: 100%;
+    }
   }
 
   .image-container, .text-container {
@@ -95,7 +102,9 @@ const Home = ({ data }) => {
   return (
     <StyledDiv>
       <section>
-        <iframe src='https://www.youtube.com/embed/Srdg3yYZaho?controls=0' title='YouTube video player' frameBorder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowFullScreen></iframe>
+        <video id='video' controls autoPlay muted loop poster>
+          <source src={Video} type='video/mp4'></source>
+        </video>
       </section>
       <section>
         <div className='image-container'>
@@ -155,7 +164,7 @@ export default Home;
 
 export const pageQuery = graphql`
   query {
-      image1: file(
+    image1: file(
       relativePath: {eq: "assets/images/laser-smart-projector-pico_1.webp"}
     ) {
       childImageSharp {
