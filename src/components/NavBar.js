@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Cart from './Cart';
 import GlobalContext from './GlobalContext';
+import Menu from './Menu';
 
 const FillerDiv = styled.div`
   height: 8vh;
@@ -32,7 +33,7 @@ const StyledNav = styled.nav`
   height: 8vh;
   padding-top: 5px;
   background: black;
-  z-index: 1;
+  z-index: 5;
   min-height: 60px;
   display: flex;
   justify-content: space-around;
@@ -78,6 +79,7 @@ const StyledNav = styled.nav`
 const NavBar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
   // NavBar scroll effect
   useEffect(() => {
@@ -100,12 +102,12 @@ const NavBar = () => {
   }, [isScrollingUp, isSticky]);
   // Disable scroll when cart open
   useEffect(() => {
-    if (isCartOpen) {
+    if (isCartOpen || isMenuOpen) {
       document.body.setAttribute('style', 'overflow: hidden;');
     } else {
       document.body.setAttribute('style', '');
     }
-  }, [isCartOpen]);
+  }, [isCartOpen, isMenuOpen]);
 
   return (
     <>
@@ -117,7 +119,7 @@ const NavBar = () => {
         ${isScrollingUp && isSticky ? 'up' : ''}
       `}>
         <div>
-          <button>
+          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <FontAwesomeIcon className='icon' icon={faBars}/>
           </button>
         </div>
@@ -132,6 +134,7 @@ const NavBar = () => {
           </button>
         </div>
       </StyledNav>
+      <Menu isMenuOpen={isMenuOpen}/>
     </>
   );
 };
