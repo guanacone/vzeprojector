@@ -102,7 +102,7 @@ const Home = ({ data }) => {
   return (
     <StyledDiv>
       <section>
-        <video id='video' controls autoPlay muted loop poster>
+        <video id='video' controls autoPlay muted loop>
           <source src={Video} type='video/mp4'></source>
         </video>
       </section>
