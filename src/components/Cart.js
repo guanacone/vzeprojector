@@ -28,9 +28,7 @@ const StyledDiv = styled.div`
     text-decoration: none;
     display: flex;
     align-items: center;
-    :visited {
-      color: inherit;
-    }
+    color: white;
   }
 
   form {
