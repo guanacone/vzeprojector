@@ -126,6 +126,17 @@ const NavBar = () => {
 
     return () => document.removeEventListener('click', clickHandler);
   }, []);
+  // close menu with 'esc' key
+  useEffect(() => {
+    const keyHandler = ({ keyCode }) => {
+      if (keyCode !== 27) return;
+      setIsCartOpen(false);
+      setIsMenuOpen(false);
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    return () => document.removeEventListener('keydown', keyHandler);
+  });
   return (
     <>
       <Cart close={() => setIsCartOpen(!isCartOpen)} isCartOpen={isCartOpen}/>
