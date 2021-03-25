@@ -54,8 +54,7 @@ const StyledDiv = styled.div`
     }
 
     a {
-      color: var(--blue);
-      text-decoration: none;
+      color: var(--blue);      
       text-align: center;
       margin-top: 15px;
       transition: 0.15s opacity ease-out;
