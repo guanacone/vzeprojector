@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -81,6 +81,10 @@ const NavBar = () => {
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
+  const menuButtonRef = useRef(null);
+  const menuRef = useRef(null);
+  const cartButtonRef = useRef(null);
+  const maskerRef = useRef(null);
   // NavBar scroll effect
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
@@ -108,18 +112,31 @@ const NavBar = () => {
       document.body.setAttribute('style', '');
     }
   }, [isCartOpen, isMenuOpen]);
+  // close menu or cart on click
+  useEffect(() => {
+    const clickHandler = ({ target }) => {
+      if (menuRef.current.contains(target)) {
+        return menuButtonRef.current.click();
+      }
+      if (maskerRef.current.contains(target)) {
+        return cartButtonRef.current.click();
+      }
+    };
+    document.addEventListener('click', clickHandler);
 
+    return () => document.removeEventListener('click', clickHandler);
+  }, []);
   return (
     <>
-      <Cart close={() => setIsCartOpen(false)} isCartOpen={isCartOpen}/>
-      <MaskerDiv className={isCartOpen ? 'active' : ''} />
+      <Cart close={() => setIsCartOpen(!isCartOpen)} isCartOpen={isCartOpen}/>
+      <MaskerDiv ref={maskerRef} className={isCartOpen ? 'active' : ''} />
       <FillerDiv isSticky={isSticky}/>
       <StyledNav className={`
         ${isSticky ? 'sticky' : ''}
         ${isScrollingUp && isSticky ? 'up' : ''}
       `}>
         <div>
-          <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <button ref={menuButtonRef} onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <FontAwesomeIcon className='icon' icon={faBars}/>
           </button>
         </div>
@@ -129,12 +146,12 @@ const NavBar = () => {
           </Link>
         </div>
         <div>
-          <button onClick={() => setIsCartOpen(true)}>
+          <button ref={cartButtonRef} onClick={() => setIsCartOpen(!isCartOpen)}>
             <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
           </button>
         </div>
       </StyledNav>
-      <Menu isMenuOpen={isMenuOpen}/>
+      <Menu isMenuOpen={isMenuOpen} menuRef={menuRef}/>
     </>
   );
 };

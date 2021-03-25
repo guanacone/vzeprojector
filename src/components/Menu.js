@@ -33,7 +33,7 @@ const StyledDiv = styled.div`
             margin: 0 auto;
             height: 2px;
             background-color: black;
-            transition: all 0.25s;
+            transition: all 0.4s;
             margin: 5px auto;
         }
         :hover {
@@ -45,9 +45,9 @@ const StyledDiv = styled.div`
     }
 `;
 
-const Menu = ({ isMenuOpen }) => {
+const Menu = ({ isMenuOpen, menuRef }) => {
   return (
-    <StyledDiv isMenuOpen={isMenuOpen}>
+    <StyledDiv isMenuOpen={isMenuOpen} ref={menuRef}>
       <Link to='/'>Home</Link>
       <Link to='/about'>About</Link>
       <Link to='/contact'>Contact</Link>
