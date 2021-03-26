@@ -7,7 +7,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     html {
-        font-size: 10px;
+        font-size: 12px;
     }
     body {
         width: 100vw;
