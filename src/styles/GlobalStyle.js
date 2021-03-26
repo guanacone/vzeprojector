@@ -3,6 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
     :root {
         --blue: #00ceff;
+        --gray: #7e7e7e;
     }
 
     html {
@@ -18,6 +19,10 @@ const GlobalStyle = createGlobalStyle`
         font-size: 1.6rem;
         color: black;
         line-height: 1.625;
+    }
+
+    a {
+        text-decoration: none;
     }
 `;
 

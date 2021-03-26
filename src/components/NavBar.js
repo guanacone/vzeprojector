@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import { StaticImage } from 'gatsby-plugin-image';
@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 import Cart from './Cart';
 import GlobalContext from './GlobalContext';
+import Menu from './Menu';
 
 const FillerDiv = styled.div`
   height: 8vh;
@@ -32,7 +33,7 @@ const StyledNav = styled.nav`
   height: 8vh;
   padding-top: 5px;
   background: black;
-  z-index: 1;
+  z-index: 5;
   min-height: 60px;
   display: flex;
   justify-content: space-around;
@@ -78,7 +79,12 @@ const StyledNav = styled.nav`
 const NavBar = () => {
   const [isSticky, setIsSticky] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
+  const menuButtonRef = useRef(null);
+  const menuRef = useRef(null);
+  const cartButtonRef = useRef(null);
+  const maskerRef = useRef(null);
   // NavBar scroll effect
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
@@ -100,24 +106,48 @@ const NavBar = () => {
   }, [isScrollingUp, isSticky]);
   // Disable scroll when cart open
   useEffect(() => {
-    if (isCartOpen) {
+    if (isCartOpen || isMenuOpen) {
       document.body.setAttribute('style', 'overflow: hidden;');
     } else {
       document.body.setAttribute('style', '');
     }
-  }, [isCartOpen]);
+  }, [isCartOpen, isMenuOpen]);
+  // close menu or cart on click
+  useEffect(() => {
+    const clickHandler = ({ target }) => {
+      if (menuRef.current.contains(target)) {
+        return menuButtonRef.current.click();
+      }
+      if (maskerRef.current.contains(target)) {
+        return cartButtonRef.current.click();
+      }
+    };
+    document.addEventListener('click', clickHandler);
 
+    return () => document.removeEventListener('click', clickHandler);
+  }, []);
+  // close menu with 'esc' key
+  useEffect(() => {
+    const keyHandler = ({ keyCode }) => {
+      if (keyCode !== 27) return;
+      setIsCartOpen(false);
+      setIsMenuOpen(false);
+    };
+    document.addEventListener('keydown', keyHandler);
+
+    return () => document.removeEventListener('keydown', keyHandler);
+  });
   return (
     <>
-      <Cart close={() => setIsCartOpen(false)} isCartOpen={isCartOpen}/>
-      <MaskerDiv className={isCartOpen ? 'active' : ''} />
+      <Cart close={() => setIsCartOpen(!isCartOpen)} isCartOpen={isCartOpen}/>
+      <MaskerDiv ref={maskerRef} className={isCartOpen ? 'active' : ''} />
       <FillerDiv isSticky={isSticky}/>
       <StyledNav className={`
         ${isSticky ? 'sticky' : ''}
         ${isScrollingUp && isSticky ? 'up' : ''}
       `}>
         <div>
-          <button>
+          <button ref={menuButtonRef} onClick={() => setIsMenuOpen(!isMenuOpen)}>
             <FontAwesomeIcon className='icon' icon={faBars}/>
           </button>
         </div>
@@ -127,11 +157,12 @@ const NavBar = () => {
           </Link>
         </div>
         <div>
-          <button onClick={() => setIsCartOpen(true)}>
+          <button ref={cartButtonRef} onClick={() => setIsCartOpen(!isCartOpen)}>
             <FontAwesomeIcon className='icon' icon={faShoppingCart}/>
           </button>
         </div>
       </StyledNav>
+      <Menu isMenuOpen={isMenuOpen} menuRef={menuRef}/>
     </>
   );
 };
