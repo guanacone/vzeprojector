@@ -2,15 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledSection = styled.section`
-    max-width: 980px;
-    padding: 0 20px;
-    margin: 0 auto;
-
-    header {
-        margin-top: 60px;
-        text-align: center;
-    }
-
     p {
         margin-bottom: 20px;
         text-align: justify;
@@ -23,7 +14,7 @@ const StyledSection = styled.section`
 
 const About = () => {
   return (
-    <StyledSection>
+    <StyledSection className='page-width'>
       <header>
         <h1>Visualize: How does it work?</h1>
       </header>

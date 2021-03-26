@@ -21,8 +21,19 @@ const GlobalStyle = createGlobalStyle`
         line-height: 1.625;
     }
 
+    header {
+        margin-top: 60px;
+        text-align: center;
+    }
+
     a {
         text-decoration: none;
+    }
+
+    .page-width {
+        max-width: 980px;
+        padding: 0 20px;
+        margin: 0 auto;
     }
 `;
 
