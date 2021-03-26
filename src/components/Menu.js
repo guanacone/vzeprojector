@@ -45,9 +45,9 @@ const StyledDiv = styled.div`
     }
 `;
 
-const Menu = ({ isMenuOpen, menuRef }) => {
+const Menu = ({ onClick, isMenuOpen, menuRef }) => {
   return (
-    <StyledDiv isMenuOpen={isMenuOpen} ref={menuRef}>
+    <StyledDiv onClick={onClick} isMenuOpen={isMenuOpen} ref={menuRef}>
       <Link to='/'>Home</Link>
       <Link to='/about'>About</Link>
       <Link to='/contact'>Contact</Link>
