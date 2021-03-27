@@ -29,7 +29,7 @@ const MaskerDiv = styled.div`
 
 const StyledNav = styled.nav`
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   height: 8vh;
   padding-top: 5px;
   background: black;
@@ -77,19 +77,25 @@ const StyledNav = styled.nav`
   }
 `;
 
-const NavBar = () => {
+const NavBar = ({ location }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
-
     const updateIsScrollingUp = () => {
       const scrollY = window.pageYOffset;
       setIsScrollingUp(scrollY < lastScrollY);
       lastScrollY = scrollY > 0 ? scrollY : 0;
-      if (window.pageYOffset > window.innerHeight) {
+      if (location.pathname === '/') {
+        if (window.pageYOffset > window.innerHeight) {
+          setIsSticky(true);
+        } else {
+          setIsSticky(false);
+        }
+      }
+      if (window.pageYOffset > 0) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
