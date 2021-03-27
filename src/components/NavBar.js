@@ -82,10 +82,6 @@ const NavBar = () => {
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
-  // const menuButtonRef = useRef(null);
-  // const menuRef = useRef(null);
-  // const cartButtonRef = useRef(null);
-  // const maskerRef = useRef(null);
   // NavBar scroll effect
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
@@ -139,7 +135,7 @@ const NavBar = () => {
           </button>
         </div>
         <div>
-          <Link to='/'>
+          <Link to='/' onClick={() => setIsMenuOpen(false)}>
             <StaticImage src='../assets/images/vze_logo.png' height={50} alt='vze projector logo'/>
           </Link>
         </div>

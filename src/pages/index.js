@@ -150,7 +150,7 @@ const Home = ({ data }) => {
             <span className='regular-price'>$350.00</span>
           </div>
           <AddToCartButton setIsCartOpen={setIsCartOpen}/>
-          <Link to='#'>
+          <Link to='about'>
             <FontAwesomeIcon className='icon' icon={faList}/>
             <span>FULL DETAILS</span>
           </Link>
