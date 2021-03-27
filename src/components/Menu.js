@@ -5,6 +5,7 @@ import styled from 'styled-components';
 const StyledMenu = styled.menu`
     box-sizing: border-box;
     position: fixed;
+    margin-top: 0;
     top: ${({ isMenuOpen }) => (isMenuOpen ? '8vh' : '-92vh')};
     opacity: ${({ isMenuOpen }) => (isMenuOpen ? 1 : 0)};
     width: 100vw;
