@@ -82,11 +82,6 @@ const NavBar = () => {
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
-  // const menuButtonRef = useRef(null);
-  // const menuRef = useRef(null);
-  // const cartButtonRef = useRef(null);
-  // const maskerRef = useRef(null);
-  // NavBar scroll effect
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
 
