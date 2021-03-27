@@ -94,8 +94,7 @@ const NavBar = ({ location }) => {
         } else {
           setIsSticky(false);
         }
-      }
-      if (window.pageYOffset > 0) {
+      } else if (window.pageYOffset > 0) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
