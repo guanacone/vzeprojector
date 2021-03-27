@@ -5,7 +5,7 @@ import Typography from '../styles/Typography';
 import NavBar from '../components/NavBar';
 import { GlobalProvider } from '../components/GlobalContext';
 
-const Layout = ({ children }) => {
+const Layout = ({ children, location }) => {
   const [hasMounted, setHasMounted] = React.useState(false);
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const Layout = ({ children }) => {
       <GlobalProvider>
         <GlobalStyle/>
         <Typography/>
-        <NavBar/>
+        <NavBar location={location}/>
         {children}
       </GlobalProvider>
     </div>
