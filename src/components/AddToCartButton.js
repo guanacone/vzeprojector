@@ -15,10 +15,12 @@ const StyledButton = styled.button`
     cursor: pointer;
     transition: outline 0.1s linear;
     margin-top: 10px;
+    width: 100%;
     &:hover {
     outline: 2px solid var(--blue);
     }
 `;
+
 const AddToCartButton = ({ setIsCartOpen }) => {
   return (
     <StyledButton onClick={() => setIsCartOpen(true)}>ADD TO CART</StyledButton>
