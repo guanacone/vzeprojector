@@ -88,7 +88,7 @@ const Cart = ({ isCartOpen, close }) => {
         <div className='closing'></div>
       </button>
       <div className='cart-content'>
-        <Link to='about'>
+        <Link to='/about' onClick={close}>
           <GatsbyImage image={productPic} alt='folded vze projector'/>
           VZE: Music Visualizer
         </Link>
