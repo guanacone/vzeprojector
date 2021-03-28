@@ -46,7 +46,8 @@ const Contact = () => {
         <h1>Contact</h1>
       </header>
       <form
-        name='contact-form'>
+        name='contact-form'
+        data-netlify='true'>
         <div className='fields'>
           <input type='text' name='first-name' placeholder='First Name' required/>
           <input type='text' name='last-name' placeholder='Last Name' required/>
