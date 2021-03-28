@@ -47,7 +47,7 @@ const Contact = () => {
       </header>
       <form
         name='contact-form'
-        data-netlify='true'
+        netlify
         method='post'>
         <div className='fields'>
           <input type='text' name='first-name' placeholder='First Name' required/>
@@ -58,7 +58,7 @@ const Contact = () => {
           <input type='email' name='email' placeholder='Email' required/>
         </div>
         <textarea name='message' placeholder='Your Message' className='full-width' rows='13'required/>
-        <input type='button' value='SEND'/>
+        <button type='submit'>SEND</button>
       </form>
 
     </StyledSection>
