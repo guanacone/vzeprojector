@@ -2,9 +2,10 @@ import { Link } from 'gatsby';
 import React from 'react';
 import styled from 'styled-components';
 
-const StyledDiv = styled.div`
+const StyledMenu = styled.menu`
     box-sizing: border-box;
     position: fixed;
+    margin-top: 0;
     top: ${({ isMenuOpen }) => (isMenuOpen ? '8vh' : '-92vh')};
     opacity: ${({ isMenuOpen }) => (isMenuOpen ? 1 : 0)};
     width: 100vw;
@@ -47,13 +48,13 @@ const StyledDiv = styled.div`
 
 const Menu = ({ onClick, isMenuOpen, menuRef }) => {
   return (
-    <StyledDiv onClick={onClick} isMenuOpen={isMenuOpen} ref={menuRef}>
+    <StyledMenu onClick={onClick} isMenuOpen={isMenuOpen} ref={menuRef}>
       <Link to='/'>Home</Link>
       <Link to='/about'>About</Link>
       <Link to='/contact'>Contact</Link>
       <Link to='/video'>Video</Link>
       <Link to='/buynow'>Buy Now</Link>
-    </StyledDiv>
+    </StyledMenu>
   );
 };
 

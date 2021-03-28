@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
+import GlobalContext from './GlobalContext';
 
 const StyledButton = styled.button`
     background-color: var(--blue);
@@ -15,11 +16,14 @@ const StyledButton = styled.button`
     cursor: pointer;
     transition: outline 0.1s linear;
     margin-top: 10px;
+    width: 100%;
     &:hover {
     outline: 2px solid var(--blue);
     }
 `;
-const AddToCartButton = ({ setIsCartOpen }) => {
+
+const AddToCartButton = () => {
+  const [, setIsCartOpen] = useContext(GlobalContext);
   return (
     <StyledButton onClick={() => setIsCartOpen(true)}>ADD TO CART</StyledButton>
   );

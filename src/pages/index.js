@@ -1,12 +1,11 @@
+import React from 'react';
 import { graphql, Link } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faList } from '@fortawesome/free-solid-svg-icons';
-import React, { useContext } from 'react';
 import styled from 'styled-components';
 import BuyNowLink from '../components/BuyNowLink';
 import AddToCartButton from '../components/AddToCartButton';
-import GlobalContext from '../components/GlobalContext';
 import Video from '../assets/video/splashscreen.mp4';
 
 const StyledDiv = styled.div`
@@ -97,7 +96,6 @@ const StyledDiv = styled.div`
 `;
 
 const Home = ({ data }) => {
-  const [, setIsCartOpen] = useContext(GlobalContext);
   const images = [data.image1, data.image2, data.image3].map(getImage);
   return (
     <StyledDiv>
@@ -149,8 +147,8 @@ const Home = ({ data }) => {
             <span className='promo-price'>$299.95</span>
             <span className='regular-price'>$350.00</span>
           </div>
-          <AddToCartButton setIsCartOpen={setIsCartOpen}/>
-          <Link to='#'>
+          <AddToCartButton/>
+          <Link to='about'>
             <FontAwesomeIcon className='icon' icon={faList}/>
             <span>FULL DETAILS</span>
           </Link>

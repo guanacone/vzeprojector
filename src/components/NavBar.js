@@ -29,7 +29,7 @@ const MaskerDiv = styled.div`
 
 const StyledNav = styled.nav`
   box-sizing: border-box;
-  width: 100%;
+  width: 100vw;
   height: 8vh;
   padding-top: 5px;
   background: black;
@@ -77,24 +77,25 @@ const StyledNav = styled.nav`
   }
 `;
 
-const NavBar = () => {
+const NavBar = ({ location }) => {
   const [isSticky, setIsSticky] = useState(false);
   const [isScrollingUp, setIsScrollingUp] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
-  // const menuButtonRef = useRef(null);
-  // const menuRef = useRef(null);
-  // const cartButtonRef = useRef(null);
-  // const maskerRef = useRef(null);
   // NavBar scroll effect
   useEffect(() => {
     let lastScrollY = window.pageYOffset;
-
     const updateIsScrollingUp = () => {
       const scrollY = window.pageYOffset;
       setIsScrollingUp(scrollY < lastScrollY);
       lastScrollY = scrollY > 0 ? scrollY : 0;
-      if (window.pageYOffset > window.innerHeight) {
+      if (location.pathname === '/') {
+        if (window.pageYOffset > window.innerHeight) {
+          setIsSticky(true);
+        } else {
+          setIsSticky(false);
+        }
+      } else if (window.pageYOffset > 0) {
         setIsSticky(true);
       } else {
         setIsSticky(false);
@@ -139,7 +140,7 @@ const NavBar = () => {
           </button>
         </div>
         <div>
-          <Link to='/'>
+          <Link to='/' onClick={() => setIsMenuOpen(false)}>
             <StaticImage src='../assets/images/vze_logo.png' height={50} alt='vze projector logo'/>
           </Link>
         </div>
