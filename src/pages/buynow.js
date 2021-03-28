@@ -1,9 +1,8 @@
+import React from 'react';
 import { graphql } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import React, { useContext } from 'react';
 import styled from 'styled-components';
 import AddToCartButton from '../components/AddToCartButton';
-import GlobalContext from '../components/GlobalContext';
 
 const StyledSection = styled.section`
     display: flex;
@@ -69,7 +68,6 @@ const StyledSection = styled.section`
 `;
 
 const BuyNow = ({ data }) => {
-  const [, setIsCartOpen] = useContext(GlobalContext);
   const images = [data.image1, data.image2, data.image3].map(getImage);
   return (
     <StyledSection>
@@ -86,7 +84,7 @@ const BuyNow = ({ data }) => {
       </div>
       <div className='content-container'>
         <div>
-          <AddToCartButton setIsCartOpen={setIsCartOpen}/>
+          <AddToCartButton/>
         </div>
         <div>
           <p>VZE is a portable battery powered smart projector.
