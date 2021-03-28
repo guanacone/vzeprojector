@@ -47,8 +47,8 @@ const Contact = () => {
       </header>
       <form
         name='contact-form'
-        netlify
-        method='post'>
+        data-netlify='true'
+        method='POST'>
         <div className='fields'>
           <input type='text' name='first-name' placeholder='First Name' required/>
           <input type='text' name='last-name' placeholder='Last Name' required/>
