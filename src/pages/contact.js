@@ -10,7 +10,6 @@ const StyledSection = styled.section`
             padding: 10px;
             background: #cfcfcf;
             border: none;
-            /* outline: none; */
             margin-top: 10px;
             resize: none;
         }
@@ -18,6 +17,7 @@ const StyledSection = styled.section`
         input[type="button"] {
             background: var(--blue);
             padding: 15px;
+            cursor: pointer;
         }
 
         textarea {
@@ -46,7 +46,11 @@ const Contact = () => {
         <h1>Contact</h1>
       </header>
       <form
-        name='contact-form'>
+        method='post'
+        netlify-honeypot='bot-field'
+        data-netlify='true' name='contact-form'>
+        <input type='hidden' name='bot-field' />
+        <input type='hidden' name='form-name' value='contact' />
         <div className='fields'>
           <input type='text' name='first-name' placeholder='First Name' required/>
           <input type='text' name='last-name' placeholder='Last Name' required/>
