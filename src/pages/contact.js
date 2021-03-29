@@ -48,7 +48,8 @@ const Contact = () => {
       <form
         name='contact-form'
         data-netlify='true'
-        method='POST'>
+        method='post'>
+        <input type='hidden' name='form-name' value='contact-form' />
         <div className='fields'>
           <input type='text' name='first-name' placeholder='First Name' required/>
           <input type='text' name='last-name' placeholder='Last Name' required/>
