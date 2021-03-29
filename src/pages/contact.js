@@ -46,12 +46,7 @@ const Contact = () => {
         <h1>Contact</h1>
       </header>
       <form
-        method='post'
-        netlify-honeypot='bot-field'
-        data-netlify='true'
         name='contact-form'>
-        <input type='hidden' name='bot-field' />
-        <input type='hidden' name='form-name' value='contact-form'/>
         <div className='fields'>
           <input type='text' name='first-name' placeholder='First Name' required/>
           <input type='text' name='last-name' placeholder='Last Name' required/>
