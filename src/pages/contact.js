@@ -78,8 +78,8 @@ const Contact = () => {
         netlify-honeypot='bot-field'
         onSubmit={handleSubmit}
       >
+        <input type='hidden' name='form-name' value='contact-form'/>
         <input type='hidden' name='bot-field' onChange={handleChange}/>
-        <input type='hidden' name='form-name' value='contact' onChange={handleChange}/>
         <div className='fields'>
           <input type='text' name='first-name' placeholder='First Name' onChange={handleChange} required/>
           <input type='text' name='last-name' placeholder='Last Name' onChange={handleChange} required/>
