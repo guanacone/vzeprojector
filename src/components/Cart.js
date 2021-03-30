@@ -69,7 +69,7 @@ const StyledDiv = styled.div`
 `;
 
 const Cart = ({ isCartOpen, close }) => {
-  const [order, setOrder] = useState(1);
+  const [order] = useState(1);
   const data = useStaticQuery(graphql`
   {
       file(relativePath: {eq: "assets/images/laser-smart-projector-pico_3.webp"}) {
