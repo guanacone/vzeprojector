@@ -92,7 +92,7 @@ const Cart = ({ isCartOpen, close }) => {
           <GatsbyImage image={productPic} alt='folded vze projector'/>
           VZE: Music Visualizer
         </Link>
-        <form
+        {/* <form
           name='cart'
           onSubmit={(e) => {
             e.preventDefault();
@@ -108,7 +108,7 @@ const Cart = ({ isCartOpen, close }) => {
             min={0}
             max={5}
             required/>
-        </form>
+        </form> */}
         <p>your order total is {formatMoney((order * 29995))}</p>
       </div>
     </StyledDiv>
