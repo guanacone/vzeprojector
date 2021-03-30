@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Link, graphql, useStaticQuery } from 'gatsby';
+import Paypal from 'gatsby-plugin-paypal';
 import formatMoney from '../utils/formatMoney';
 
 const StyledDiv = styled.div`
@@ -69,7 +70,9 @@ const StyledDiv = styled.div`
 `;
 
 const Cart = ({ isCartOpen, close }) => {
-  const [order, setOrder] = useState(1);
+  const price = 29995;
+  const [orderTotal, setOrderTotal] = useState(price);
+  const [orderQuantity, setOrderQuantity] = useState(1);
   const data = useStaticQuery(graphql`
   {
       file(relativePath: {eq: "assets/images/laser-smart-projector-pico_3.webp"}) {
@@ -81,6 +84,10 @@ const Cart = ({ isCartOpen, close }) => {
   `);
   const productPic = getImage(data.file);
 
+  useEffect(() => {
+    setOrderTotal(orderQuantity * price);
+  }, [orderQuantity]);
+  console.log(typeof orderTotal, orderTotal);
   return (
     <StyledDiv isCartOpen={isCartOpen}>
       <button onClick={close}>
@@ -92,23 +99,33 @@ const Cart = ({ isCartOpen, close }) => {
           <GatsbyImage image={productPic} alt='folded vze projector'/>
           VZE: Music Visualizer
         </Link>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          console.log('submited');
-        }}>
+        <form>
           <label htmlFor='quantity'>Ordered quantity:</label>
           <input
             type='number'
             name='quantity'
             id='quantity'
-            value={order}
-            onChange={(e) => { setOrder(e.target.value); }}
+            value={orderQuantity}
+            onChange={
+              (e) => {
+                setOrderQuantity(e.target.value);
+              }}
             min={0}
             max={5}
             required/>
         </form>
-        <p>your order total is {formatMoney((order * 29995))}</p>
+        <p>your order total is {formatMoney(orderTotal)}</p>
       </div>
+      <Paypal
+        style={{
+          shape: 'rect',
+          color: 'blue',
+          layout: 'horizontal',
+          label: 'paypal',
+        }}
+        amount={orderTotal / 100}
+        currency='USD'
+      />
     </StyledDiv>
   );
 };
