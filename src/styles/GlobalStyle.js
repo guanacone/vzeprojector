@@ -12,7 +12,6 @@ const GlobalStyle = createGlobalStyle`
     body {
         width: 100vw;
         overflow-x: hidden;
-        padding-right: 15px;
         font-family: Lato, sans-serif;
         font-style: normal;
         font-weight: 400;
