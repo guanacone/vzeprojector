@@ -92,10 +92,12 @@ const Cart = ({ isCartOpen, close }) => {
           <GatsbyImage image={productPic} alt='folded vze projector'/>
           VZE: Music Visualizer
         </Link>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          console.log('submited');
-        }}>
+        <form
+          name='cart'
+          onSubmit={(e) => {
+            e.preventDefault();
+            console.log('submited');
+          }}>
           <label htmlFor='quantity'>Ordered quantity:</label>
           <input
             type='number'
