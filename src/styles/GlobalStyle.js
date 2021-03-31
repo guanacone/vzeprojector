@@ -6,6 +6,11 @@ const GlobalStyle = createGlobalStyle`
         --gray: #7e7e7e;
     }
 
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
     html {
         font-size: 12px;
     }
@@ -30,7 +35,7 @@ const GlobalStyle = createGlobalStyle`
     }
 
     .page-width {
-        max-width: 980px;
+        max-width: 80%;
         padding: 0 20px;
         margin: 0 auto;
     }

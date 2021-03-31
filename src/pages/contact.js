@@ -2,41 +2,50 @@ import React from 'react';
 import styled from 'styled-components';
 
 const StyledSection = styled.section`
-    form {
-        font-size: 1.6rem;
+  form {
+    font-size: 1.6rem;
 
-        input, textarea {
-            box-sizing: border-box;
-            padding: 10px;
-            background: #cfcfcf;
-            border: none;
-            /* outline: none; */
-            margin-top: 10px;
-            resize: none;
-        }
-
-        input[type="button"] {
-            background: var(--blue);
-            padding: 15px;
-        }
-
-        textarea {
-            height: auto;
-        }
-
-        .fields {
-            display: flex;
-            justify-content: space-between;
-
-            input {
-                width: 49%;
-            }
-        }
-
-        .full-width {
-            width: 100%;
-        }
+    input, textarea {
+      box-sizing: border-box;
+      padding: 10px;
+      background: #cfcfcf;
+      border: none;
+      margin-top: 10px;
+      resize: none;
     }
+
+    input[type="button"] {
+      background: var(--blue);
+      padding: 15px;
+    }
+
+    textarea {
+      height: auto;
+    }
+
+    .fields {
+      display: flex;
+      justify-content: space-between;
+
+      input {
+        width: 49%;
+      }
+    }
+
+    .full-width {
+      width: 100%;
+    }
+
+    @media(max-width: 575px) {
+      .fields {
+        flex-direction: column;
+
+        input {
+          width: 100%;
+        }
+      }
+    }
+  }
 `;
 
 const Contact = () => {

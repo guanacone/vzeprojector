@@ -33,11 +33,10 @@ const StyledDiv = styled.div`
     justify-content: center;
     box-sizing: border-box;
     width: 50%;
-    height: 550px;
+    padding: 5% 5%;
   }
 
   .text-container {
-    padding: 140px 40px;
     max-width: 500px;
     margin: 0 auto;
     h2 {
@@ -67,7 +66,7 @@ const StyledDiv = styled.div`
   } 
 
   .last {
-    width: 30%;
+    width: 40%;
     margin: 0;
     display: flex;
     justify-content: center;
@@ -84,6 +83,12 @@ const StyledDiv = styled.div`
     span {
       margin-right: 15px;
     }
+    img {
+      transition: transform 0.3s ease-in; 
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
   }
 
   .promo-price {
@@ -93,6 +98,19 @@ const StyledDiv = styled.div`
   .regular-price {
     text-decoration: line-through var(--blue) solid;
   }
+
+  @media(max-width: 769px) {
+
+    .container {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;  
+    }
+
+    .image-container, .text-container {
+      width: 80%;
+    }  
+  }   
 `;
 
 const Home = ({ data }) => {
@@ -104,7 +122,7 @@ const Home = ({ data }) => {
           <source src={Video} type='video/mp4'></source>
         </video>
       </section>
-      <section>
+      <section className='container'>
         <div className='image-container'>
           <GatsbyImage image={images[0]} alt='picture' />
         </div>
@@ -121,7 +139,7 @@ const Home = ({ data }) => {
           <BuyNowLink/>
         </div>
       </section>
-      <section>
+      <section className='container'>
         <div className='text-container'>
           <h2>Hands-free night-tripping!</h2>
           <div>
@@ -137,7 +155,7 @@ const Home = ({ data }) => {
           <GatsbyImage image={images[1]} alt='picture' />
         </div>
       </section>
-      <section>
+      <section className='container'>
         <div className='image-container last'>
           <GatsbyImage image={images[2]} alt='picture' />
         </div>
@@ -188,8 +206,7 @@ export const pageQuery = graphql`
       childImageSharp {
         gatsbyImageData(
           placeholder: BLURRED
-          width: 650
-          aspectRatio: 0.9
+          aspectRatio: 1
         )
       }
     }

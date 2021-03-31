@@ -67,6 +67,20 @@ const StyledDiv = styled.div`
     align-items: center;
   }
 
+  @media(max-width: 769px) {
+    width: 60vw;
+    font-weight: 700;
+    font-size: 1.5rem;
+    right: ${(props) => (props.isCartOpen ? 0 : '-60vw')};
+  }
+
+  @media(max-width: 481px) {
+    width: 100vw;
+    font-weight: 700;
+    font-size: 1.5rem;
+    right: ${(props) => (props.isCartOpen ? 0 : '-100vw')};
+  }
+
 `;
 
 const Cart = ({ isCartOpen, close }) => {
