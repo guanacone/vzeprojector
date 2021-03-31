@@ -89,7 +89,7 @@ const Contact = () => {
           <input type='email' name='email' placeholder='Email' onChange={handleChange} required/>
         </div>
         <textarea name='message' placeholder='Your Message' className='full-width' rows='13' onChange={handleChange}required/>
-        <input type='button' value='SEND'/>
+        <input type='button' name='submit-button' value='SEND'/>
       </form>
 
     </StyledSection>
