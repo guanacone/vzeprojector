@@ -127,7 +127,7 @@ const NavBar = ({ location }) => {
   }, []);
   return (
     <>
-      <Cart close={() => setIsCartOpen(!isCartOpen)} isCartOpen={isCartOpen}/>
+      <Cart/>
       <MaskerDiv onClick={() => setIsCartOpen(!isCartOpen)}className={isCartOpen ? 'active' : ''} />
       <FillerDiv isSticky={isSticky}/>
       <StyledNav className={`

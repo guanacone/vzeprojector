@@ -23,9 +23,9 @@ const StyledButton = styled.button`
 `;
 
 const AddToCartButton = () => {
-  const [, setIsCartOpen] = useContext(GlobalContext);
+  const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
   return (
-    <StyledButton onClick={() => setIsCartOpen(true)}>ADD TO CART</StyledButton>
+    <StyledButton onClick={() => setIsCartOpen(!isCartOpen)}>ADD TO CART</StyledButton>
   );
 };
 
