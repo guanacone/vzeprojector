@@ -21,7 +21,7 @@ const MaskerDiv = styled.div`
   background: black;
   opacity: 0.7;
   display: none;
-  z-index: 5;
+  z-index: 7;
   &.active {
     display: block;
   }
