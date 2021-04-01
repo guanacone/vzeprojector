@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { Link, graphql, useStaticQuery } from 'gatsby';
+import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
 import Paypal from 'gatsby-plugin-paypal';
 import formatMoney from '../utils/formatMoney';
+import GlobalContext from './GlobalContext';
 
 const StyledDiv = styled.div`
   position: fixed;
@@ -69,11 +70,12 @@ const StyledDiv = styled.div`
 
 `;
 
-const Cart = ({ isCartOpen, close }) => {
+const Cart = () => {
   const price = 29995;
   const [orderTotal, setOrderTotal] = useState(price);
   const [orderQuantity, setOrderQuantity] = useState(1);
-  const data = useStaticQuery(graphql`
+  const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
+  const { file } = useStaticQuery(graphql`
   {
       file(relativePath: {eq: "assets/images/laser-smart-projector-pico_3.webp"}) {
         childImageSharp {
@@ -82,20 +84,29 @@ const Cart = ({ isCartOpen, close }) => {
       }
     }
   `);
-  const productPic = getImage(data.file);
+  const productPic = getImage(file);
 
   useEffect(() => {
     setOrderTotal(orderQuantity * price);
   }, [orderQuantity]);
-  console.log(typeof orderTotal, orderTotal);
+
+  const getOrderTotal = () => {
+    console.log(`order total: ${orderTotal / 100}`);
+    return (orderTotal / 100);
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+  };
+
   return (
     <StyledDiv isCartOpen={isCartOpen}>
-      <button onClick={close}>
+      <button onClick={closeCart}>
         <div className='closing'></div>
         <div className='closing'></div>
       </button>
       <div className='cart-content'>
-        <Link to='/about' onClick={close}>
+        <Link to='/about' onClick={closeCart}>
           <GatsbyImage image={productPic} alt='folded vze projector'/>
           VZE: Music Visualizer
         </Link>
@@ -123,8 +134,15 @@ const Cart = ({ isCartOpen, close }) => {
           layout: 'horizontal',
           label: 'paypal',
         }}
-        amount={orderTotal / 100}
+        amount={getOrderTotal()}
         currency='USD'
+        onApprove={(data, actions) => {
+          return actions.order.capture().then(() => {
+            // This function shows a transaction success message to your buyer.
+            setIsCartOpen(false);
+            navigate('/contact');
+          });
+        }}
       />
     </StyledDiv>
   );
