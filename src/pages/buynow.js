@@ -5,66 +5,82 @@ import styled from 'styled-components';
 import AddToCartButton from '../components/AddToCartButton';
 
 const StyledSection = styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
 
-    h1 {
-        margin-bottom: 5px;
+  h1 {
+    margin-bottom: 5px;
+  }
+
+  p {
+    text-align: center;
+    font-size: 1.5rem;    
+    span {
+      margin-right: 10px;
+    }
+  }
+
+  .live {
+    display: block;
+    color: #4d4d4d;
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+  .image-container {
+    display: flex;
+    justify-content: center;
+    max-width: 80%;
+  }
+
+  .content-container {
+    margin: 50px 0;
+    width: 70%;
+    display: flex;
+    
+    div {
+      width: 50%;
+      margin: 0 20px;
     }
 
     p {
-        text-align: center;
-        font-size: 1.5rem;    
-        span {
-            margin-right: 10px;
-        }
+      text-align: justify;
+      margin: 0;
     }
+  }
 
-    .live {
-        display: block;
-        color: #4d4d4d;
-        text-align: center;
-        font-size: 1rem;
-        margin-bottom: 10px;
+  .promo-price {
+    color: var(--blue);
+  }
+
+  .regular-price {
+    text-decoration: line-through var(--blue) solid;
+  }
+
+  #zoom {
+    transition: transform 0.3s ease-in;
+    :hover {
+      transform: scale(1.1)
+    }
+  }
+
+  @media(max-width: 769px) {
+    .content-container {
+      flex-direction: column-reverse;
+      align-items: center;
+
+      div {
+        width: 80%;
+      }
     }
 
     .image-container {
-        display: flex;
-        justify-content: center;
+      flex-direction: column;
     }
-
-    .content-container {
-        margin: 50px 0;
-        width: 70%;
-        display: flex;
-        
-        div {
-            width: 50%;
-            margin: 0 20px;
-        }
-
-        p {
-            text-align: justify;
-            margin: 0;
-        }
-    }
-
-    .promo-price {
-        color: var(--blue);
-    }
-
-    .regular-price {
-        text-decoration: line-through var(--blue) solid;
-    }
-
-    #zoom {
-        transition: transform 0.3s ease-in;
-        :hover {
-            transform: scale(1.1)
-        }
-    }
+  }
 `;
 
 const BuyNow = ({ data }) => {
