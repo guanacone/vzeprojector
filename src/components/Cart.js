@@ -91,14 +91,12 @@ const Cart = () => {
   }, [orderQuantity]);
 
   const getOrderTotal = () => {
-    console.log(`order total: ${orderTotal / 100}`);
-    return (orderTotal / 100);
+    return (orderTotal / 100).toString();
   };
 
   const closeCart = () => {
     setIsCartOpen(false);
   };
-
   return (
     <StyledDiv isCartOpen={isCartOpen}>
       <button onClick={closeCart}>
