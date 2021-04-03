@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import BuyNowLink from '../components/BuyNowLink';
 import AddToCartButton from '../components/AddToCartButton';
 import Video from '../assets/video/splashscreen.mp4';
+import SEO from '../components/SEO';
 
 const StyledDiv = styled.div`
   section {
@@ -116,63 +117,66 @@ const StyledDiv = styled.div`
 const Home = ({ data }) => {
   const images = [data.image1, data.image2, data.image3].map(getImage);
   return (
-    <StyledDiv>
-      <section>
-        <video id='video' controls autoPlay muted loop>
-          <source src={Video} type='video/mp4'></source>
-        </video>
-      </section>
-      <section className='container'>
-        <div className='image-container'>
-          <GatsbyImage image={images[0]} alt='picture' />
-        </div>
-        <div className='text-container animation'>
-          <h2 className=' has-animation'>PORTABLE MUSIC VISUALIZER</h2>
-          <div>
-            <p>Transform music into mesmerizing visuals anywhere you go!
-              Project powerful audio-visualization in real time to any surface,
-              wall, ceiling or floor. With extensive battery life, VZE works hard
-              to blow your friends’ minds in any  setting or plane of reality. It
-              plays normal media too, just in case you need a Netflix binge after
-              your full-moon party.</p>
+    <>
+      <SEO title='Home'/>
+      <StyledDiv>
+        <section>
+          <video id='video' controls autoPlay muted loop>
+            <source src={Video} type='video/mp4'></source>
+          </video>
+        </section>
+        <section>
+          <div className='image-container'>
+            <GatsbyImage image={images[0]} alt='picture' />
           </div>
-          <BuyNowLink/>
-        </div>
-      </section>
-      <section className='container'>
-        <div className='text-container'>
-          <h2>Hands-free night-tripping!</h2>
-          <div>
-            <p>Unlike ordinary projectors, the VZE requires no tripods,
-              mounts, or cables. Its lens can pivot 90 degrees from wall to ceiling
-              in one fluid motion, and it can be held like a flashlight for
-              visuals-on-the-go. No matter how you position or play with it, VZE
-              offers an uncompromisingly immersive party experience.</p>
+          <div className='text-container animation'>
+            <h2 className=' has-animation'>PORTABLE MUSIC VISUALIZER</h2>
+            <div>
+              <p>Transform music into mesmerizing visuals anywhere you go!
+                Project powerful audio-visualization in real time to any surface,
+                wall, ceiling or floor. With extensive battery life, VZE works hard
+                to blow your friends’ minds in any  setting or plane of reality. It
+                plays normal media too, just in case you need a Netflix binge after
+                your full-moon party.</p>
+            </div>
+            <BuyNowLink/>
           </div>
-          <BuyNowLink/>
-        </div>
-        <div className='image-container'>
-          <GatsbyImage image={images[1]} alt='picture' />
-        </div>
-      </section>
-      <section className='container'>
-        <div className='image-container last'>
-          <GatsbyImage image={images[2]} alt='picture' />
-        </div>
-        <div className='text-container last'>
-          <h2>VZE: Music Visualizer</h2>
-          <div>
-            <span className='promo-price'>$299.95</span>
-            <span className='regular-price'>$350.00</span>
+        </section>
+        <section>
+          <div className='text-container'>
+            <h2>Hands-free night-tripping!</h2>
+            <div>
+              <p>Unlike ordinary projectors, the VZE requires no tripods,
+                mounts, or cables. Its lens can pivot 90 degrees from wall to ceiling
+                in one fluid motion, and it can be held like a flashlight for
+                visuals-on-the-go. No matter how you position or play with it, VZE
+                offers an uncompromisingly immersive party experience.</p>
+            </div>
+            <BuyNowLink/>
           </div>
-          <AddToCartButton/>
-          <Link to='about'>
-            <FontAwesomeIcon className='icon' icon={faList}/>
-            <span>FULL DETAILS</span>
-          </Link>
-        </div>
-      </section>
-    </StyledDiv>
+          <div className='image-container'>
+            <GatsbyImage image={images[1]} alt='picture' />
+          </div>
+        </section>
+        <section>
+          <div className='image-container last'>
+            <GatsbyImage image={images[2]} alt='picture' />
+          </div>
+          <div className='text-container last'>
+            <h2>VZE: Music Visualizer</h2>
+            <div>
+              <span className='promo-price'>$299.95</span>
+              <span className='regular-price'>$350.00</span>
+            </div>
+            <AddToCartButton/>
+            <Link to='about'>
+              <FontAwesomeIcon className='icon' icon={faList}/>
+              <span>FULL DETAILS</span>
+            </Link>
+          </div>
+        </section>
+      </StyledDiv>
+    </>
   );
 };
 
