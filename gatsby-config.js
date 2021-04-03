@@ -5,10 +5,16 @@
  */
 
 module.exports = {
+  siteMetadata: {
+    title: 'VZE Projector',
+    siteUrl: 'https://vze.live',
+    description: 'Portable music projector',
+  },
   /* Your site config here */
   plugins: [
     'gatsby-plugin-layout',
     'gatsby-plugin-styled-components',
+    'gatsby-plugin-react-helmet',
     {
       resolve: 'gatsby-plugin-google-fonts',
       options: {
