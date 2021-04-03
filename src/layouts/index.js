@@ -17,14 +17,12 @@ const Layout = ({ children, location }) => {
   }
 
   return (
-    <div>
-      <GlobalProvider>
-        <GlobalStyle/>
-        <Typography/>
-        <NavBar location={location}/>
-        {children}
-      </GlobalProvider>
-    </div>
+    <GlobalProvider>
+      <GlobalStyle/>
+      <Typography/>
+      <NavBar location={location}/>
+      {children}
+    </GlobalProvider>
   );
 };
 
