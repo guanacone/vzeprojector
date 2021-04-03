@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
-import Paypal from 'gatsby-plugin-paypal';
+import { PayPalButton } from 'react-paypal-button-v2';
 import formatMoney from '../utils/formatMoney';
 import GlobalContext from './GlobalContext';
 
@@ -125,22 +125,49 @@ const Cart = () => {
         </form>
         <p>your order total is {formatMoney(orderTotal)}</p>
       </div>
-      <Paypal
-        style={{
-          shape: 'rect',
-          color: 'blue',
-          layout: 'horizontal',
-          label: 'paypal',
-        }}
-        amount={getOrderTotal()}
-        currency='USD'
-        onApprove={(data, actions) => {
-          return actions.order.capture().then(() => {
-            // This function shows a transaction success message to your buyer.
-            setIsCartOpen(false);
-            navigate('/contact');
+      <PayPalButton
+        createOrder={(data, actions) => {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                currency_code: 'USD',
+                value: getOrderTotal(),
+                breakdown: {
+                  item_total: {
+                    currency_code: 'USD',
+                    value: getOrderTotal(),
+                  },
+                },
+              },
+              items: [
+                {
+                  name: 'VZE Projector',
+                  description: 'Portable music visualizer',
+                  unit_amount: {
+                    currency_code: 'USD',
+                    value: price / 100,
+                  },
+                  quantity: orderQuantity,
+                },
+              ],
+            }],
           });
         }}
+        onSuccess={(details) => {
+          setIsCartOpen(false);
+          navigate('/order-complete/', { state: { details } });
+        }}
+        options={
+          {
+            clientId: 'AeBznbYjIdRw8kNGj8V781-lE2PiUUhuvmO90ZJMOLGz9iVQLb_qDuTpjM2iRcPSNnwzZNCZjHLSGaPJ',
+          }
+        }
+        style={
+          {
+            layout: 'horizontal',
+            tagline: false,
+          }
+        }
       />
     </StyledDiv>
   );

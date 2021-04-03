@@ -30,12 +30,5 @@ module.exports = {
     'gatsby-plugin-image',
     'gatsby-plugin-sharp',
     'gatsby-transformer-sharp',
-    {
-      resolve: 'gatsby-plugin-paypal',
-      options: {
-        clientId: 'AeBznbYjIdRw8kNGj8V781-lE2PiUUhuvmO90ZJMOLGz9iVQLb_qDuTpjM2iRcPSNnwzZNCZjHLSGaPJ',
-        currency: 'USD',
-      },
-    },
   ],
 };
