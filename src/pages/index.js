@@ -9,14 +9,11 @@ import AddToCartButton from '../components/AddToCartButton';
 import Video from '../assets/video/splashscreen.mp4';
 import SEO from '../components/SEO';
 
-const StyledDiv = styled.div`
-  section {
+const StyledSection = styled.section`
+  article {
     display: flex;
     justify-content: center;
     padding-bottom: 20px;
-    &#video {
-      height: 92vh;
-    }
   }
 
   video {
@@ -119,13 +116,13 @@ const Home = ({ data }) => {
   return (
     <>
       <SEO title='Home'/>
-      <StyledDiv>
-        <section>
+      <StyledSection>
+        <article>
           <video id='video' controls autoPlay muted loop>
             <source src={Video} type='video/mp4'></source>
           </video>
-        </section>
-        <section>
+        </article>
+        <article>
           <div className='image-container'>
             <GatsbyImage image={images[0]} alt='picture' />
           </div>
@@ -141,8 +138,8 @@ const Home = ({ data }) => {
             </div>
             <BuyNowLink/>
           </div>
-        </section>
-        <section>
+        </article>
+        <article>
           <div className='text-container'>
             <h2>Hands-free night-tripping!</h2>
             <div>
@@ -157,8 +154,8 @@ const Home = ({ data }) => {
           <div className='image-container'>
             <GatsbyImage image={images[1]} alt='picture' />
           </div>
-        </section>
-        <section>
+        </article>
+        <article>
           <div className='image-container last'>
             <GatsbyImage image={images[2]} alt='picture' />
           </div>
@@ -174,8 +171,8 @@ const Home = ({ data }) => {
               <span>FULL DETAILS</span>
             </Link>
           </div>
-        </section>
-      </StyledDiv>
+        </article>
+      </StyledSection>
     </>
   );
 };

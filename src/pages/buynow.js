@@ -6,13 +6,10 @@ import AddToCartButton from '../components/AddToCartButton';
 import SEO from '../components/SEO';
 
 const StyledSection = styled.section`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 60px;
-
-  h1 {
-    margin-bottom: 5px;
+  article {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   p {
@@ -90,35 +87,39 @@ const BuyNow = ({ data }) => {
     <>
       <SEO title='Buy Now'/>
       <StyledSection>
-        <div className='image-container'>
-          <GatsbyImage id='zoom' image={images[2]} alt='picture' />
-        </div>
-        <div>
-          <span className='live'>vze.live</span>
+        <header>
           <h1>VZE: Music Visualizer</h1>
-          <p>
-            <span className='promo-price'>$299.95</span>
-            <span className='regular-price'>$350.00</span>
-          </p>
-        </div>
-        <div className='content-container'>
-          <div>
-            <AddToCartButton/>
+        </header>
+        <article>
+          <div className='image-container'>
+            <GatsbyImage id='zoom' image={images[2]} alt='picture' />
           </div>
           <div>
-            <p>VZE is a portable battery powered smart projector.
-              The device has an external microphone that analyzes ambient
-              music without storing any data. The beat’s frequency is used to render
-              the mesmerizing music-inspired visuals, synchronized to the music.
-              Just remember to crank up the volume of your tunes for the best
-              experience!</p>
+            <span className='live'>vze.live</span>
+            <p>
+              <span className='promo-price'>$299.95</span>
+              <span className='regular-price'>$350.00</span>
+            </p>
           </div>
-        </div>
-        <div className='image-container'>
-          <GatsbyImage id='zoom' image={images[2]} alt='picture' />
-          <GatsbyImage id='zoom' image={images[1]} alt='picture' />
-          <GatsbyImage id='zoom' image={images[0]} alt='picture' />
-        </div>
+          <div className='content-container'>
+            <div>
+              <AddToCartButton/>
+            </div>
+            <div>
+              <p>VZE is a portable battery powered smart projector.
+                The device has an external microphone that analyzes ambient
+                music without storing any data. The beat’s frequency is used to render
+                the mesmerizing music-inspired visuals, synchronized to the music.
+                Just remember to crank up the volume of your tunes for the best
+                experience!</p>
+            </div>
+          </div>
+          <div className='image-container'>
+            <GatsbyImage id='zoom' image={images[2]} alt='picture' />
+            <GatsbyImage id='zoom' image={images[1]} alt='picture' />
+            <GatsbyImage id='zoom' image={images[0]} alt='picture' />
+          </div>
+        </article>
       </StyledSection>
     </>
   );

@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import SEO from '../components/SEO';
 
 const StyledSection = styled.section`
-  padding-top: 100px;
 
   .main-video {
       position: relative;

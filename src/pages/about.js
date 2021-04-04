@@ -3,14 +3,18 @@ import styled from 'styled-components';
 import SEO from '../components/SEO';
 
 const StyledSection = styled.section`
-    p {
-        margin-bottom: 20px;
-        text-align: justify;
-    }
+  p {
+    margin-bottom: 20px;
+    text-align: justify;
+  }
 
-    a {
-        color: var(--blue);
-    }
+  a {
+    color: var(--blue);
+  }
+
+  li {
+    list-style-position: inside;
+  }
 `;
 
 const About = () => {

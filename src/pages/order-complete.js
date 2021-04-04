@@ -5,7 +5,6 @@ import SEO from '../components/SEO';
 
 const StyledSection = styled.section`
   article {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,7 +32,7 @@ const OrderComplete = ({ location: { state: { details } } }) => {
             <li><strong>Order id:</strong>&nbsp;{details.id}</li>
             <li>
               <strong>Order amount:</strong>
-              {formatMoney(orderDetails.amount.value * 100)}
+              &nbsp;{formatMoney(orderDetails.amount.value * 100)}
             </li>
             <li><strong>Shipping to:</strong>
               <div>{orderDetails.shipping.name.full_name}</div>
