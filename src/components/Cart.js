@@ -159,7 +159,7 @@ const Cart = () => {
         }}
         options={
           {
-            clientId: 'AeBznbYjIdRw8kNGj8V781-lE2PiUUhuvmO90ZJMOLGz9iVQLb_qDuTpjM2iRcPSNnwzZNCZjHLSGaPJ',
+            clientId: process.env.GATSBY_PAYPALID,
           }
         }
         style={
