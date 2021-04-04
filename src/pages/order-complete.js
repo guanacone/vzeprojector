@@ -16,7 +16,7 @@ const StyledSection = styled.section`
 `;
 
 const OrderComplete = ({ location: { state: { details } } }) => {
-  console.log({ details });
+  const orderDetails = details.purchase_units[0];
   return (
     <StyledSection className='page-width'>
       <header>
@@ -30,16 +30,16 @@ const OrderComplete = ({ location: { state: { details } } }) => {
           <li><strong>Order id:</strong>&nbsp;{details.id}</li>
           <li>
             <strong>Order amount:</strong>
-            &nbsp;{formatMoney(details.purchase_units[0].amount.value * 100)}
+            &nbsp;{formatMoney(orderDetails.amount.value * 100)}
           </li>
           <li><strong>Shipping to:</strong>
-            <div>{details.purchase_units[0].shipping.name.full_name}</div>
-            <div>{details.purchase_units[0].shipping.address.address_line_1}</div>
-            <div>{details.purchase_units[0].shipping.address.address_line_2}</div>
+            <div>{orderDetails.shipping.name.full_name}</div>
+            <div>{orderDetails.shipping.address.address_line_1}</div>
+            <div>{orderDetails.shipping.address.address_line_2}</div>
             <div>
-              {details.purchase_units[0].shipping.address.country_code}-
-              {details.purchase_units[0].shipping.address.postal_code}&nbsp;
-              {details.purchase_units[0].shipping.address.admin_area_2}
+              {orderDetails.shipping.address.country_code}-
+              {orderDetails.shipping.address.postal_code}&nbsp;
+              {orderDetails.shipping.address.admin_area_2}
             </div>
           </li>
         </ul>
