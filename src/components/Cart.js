@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { Link, graphql, useStaticQuery } from 'gatsby';
-import Paypal from 'gatsby-plugin-paypal';
+import { Link, navigate, graphql, useStaticQuery } from 'gatsby';
+import { PayPalButton } from 'react-paypal-button-v2';
 import formatMoney from '../utils/formatMoney';
+import GlobalContext from './GlobalContext';
 
 const StyledDiv = styled.div`
   position: fixed;
@@ -83,11 +84,12 @@ const StyledDiv = styled.div`
 
 `;
 
-const Cart = ({ isCartOpen, close }) => {
+const Cart = () => {
   const price = 29995;
   const [orderTotal, setOrderTotal] = useState(price);
   const [orderQuantity, setOrderQuantity] = useState(1);
-  const data = useStaticQuery(graphql`
+  const [isCartOpen, setIsCartOpen] = useContext(GlobalContext);
+  const { file } = useStaticQuery(graphql`
   {
       file(relativePath: {eq: "assets/images/laser-smart-projector-pico_3.webp"}) {
         childImageSharp {
@@ -96,20 +98,27 @@ const Cart = ({ isCartOpen, close }) => {
       }
     }
   `);
-  const productPic = getImage(data.file);
+  const productPic = getImage(file);
 
   useEffect(() => {
     setOrderTotal(orderQuantity * price);
   }, [orderQuantity]);
-  console.log(typeof orderTotal, orderTotal);
+
+  const getOrderTotal = () => {
+    return (orderTotal / 100).toString();
+  };
+
+  const closeCart = () => {
+    setIsCartOpen(false);
+  };
   return (
     <StyledDiv isCartOpen={isCartOpen}>
-      <button onClick={close}>
+      <button onClick={closeCart}>
         <div className='closing'></div>
         <div className='closing'></div>
       </button>
       <div className='cart-content'>
-        <Link to='/about' onClick={close}>
+        <Link to='/about' onClick={closeCart}>
           <GatsbyImage image={productPic} alt='folded vze projector'/>
           VZE: Music Visualizer
         </Link>
@@ -130,15 +139,49 @@ const Cart = ({ isCartOpen, close }) => {
         </form>
         <p>your order total is {formatMoney(orderTotal)}</p>
       </div>
-      <Paypal
-        style={{
-          shape: 'rect',
-          color: 'blue',
-          layout: 'horizontal',
-          label: 'paypal',
+      <PayPalButton
+        createOrder={(data, actions) => {
+          return actions.order.create({
+            purchase_units: [{
+              amount: {
+                currency_code: 'USD',
+                value: getOrderTotal(),
+                breakdown: {
+                  item_total: {
+                    currency_code: 'USD',
+                    value: getOrderTotal(),
+                  },
+                },
+              },
+              items: [
+                {
+                  name: 'VZE Projector',
+                  description: 'Portable music visualizer',
+                  unit_amount: {
+                    currency_code: 'USD',
+                    value: price / 100,
+                  },
+                  quantity: orderQuantity,
+                },
+              ],
+            }],
+          });
         }}
-        amount={orderTotal / 100}
-        currency='USD'
+        onSuccess={(details) => {
+          setIsCartOpen(false);
+          navigate('/order-complete/', { state: { details } });
+        }}
+        options={
+          {
+            clientId: process.env.GATSBY_PAYPALID,
+          }
+        }
+        style={
+          {
+            layout: 'horizontal',
+            tagline: false,
+          }
+        }
       />
     </StyledDiv>
   );

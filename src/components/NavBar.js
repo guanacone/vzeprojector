@@ -21,7 +21,7 @@ const MaskerDiv = styled.div`
   background: black;
   opacity: 0.7;
   display: none;
-  z-index: 5;
+  z-index: 7;
   &.active {
     display: block;
   }
@@ -127,7 +127,7 @@ const NavBar = ({ location }) => {
   }, []);
   return (
     <>
-      <Cart close={() => setIsCartOpen(!isCartOpen)} isCartOpen={isCartOpen}/>
+      <Cart/>
       <MaskerDiv onClick={() => setIsCartOpen(!isCartOpen)}className={isCartOpen ? 'active' : ''} />
       <FillerDiv isSticky={isSticky}/>
       <StyledNav className={`
