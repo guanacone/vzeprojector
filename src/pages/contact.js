@@ -37,12 +37,6 @@ const StyledSection = styled.section`
       width: 100%;
     }
 
-    #first {
-      input {
-        margin-top: 0;
-      }
-    }
-
     @media(max-width: 575px) {
       .fields {
         flex-direction: column;
@@ -65,7 +59,7 @@ const Contact = () => {
         </header>
         <form
           name='contact-form'>
-          <div className='fields' id='first'>
+          <div className='fields'>
             <input type='text' name='first-name' placeholder='First Name' required/>
             <input type='text' name='last-name' placeholder='Last Name' required/>
           </div>

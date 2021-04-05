@@ -122,7 +122,7 @@ const Home = ({ data }) => {
             <source src={Video} type='video/mp4'></source>
           </video>
         </article>
-        <article>
+        <article className='container'>
           <div className='image-container'>
             <GatsbyImage image={images[0]} alt='picture' />
           </div>
@@ -139,7 +139,7 @@ const Home = ({ data }) => {
             <BuyNowLink/>
           </div>
         </article>
-        <article>
+        <article className='container'>
           <div className='text-container'>
             <h2>Hands-free night-tripping!</h2>
             <div>
@@ -155,7 +155,7 @@ const Home = ({ data }) => {
             <GatsbyImage image={images[1]} alt='picture' />
           </div>
         </article>
-        <article>
+        <article className='container'>
           <div className='image-container last'>
             <GatsbyImage image={images[2]} alt='picture' />
           </div>
