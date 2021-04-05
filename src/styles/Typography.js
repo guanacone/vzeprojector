@@ -5,7 +5,7 @@ const Typography = createGlobalStyle`
         color: var(--gray);
         font-family: 'Titillium Web', sans-serif;
         line-height: 1.225;
-        margin: 0
+        margin: 2rem;
     }
 `;
 
