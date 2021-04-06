@@ -64,7 +64,7 @@ const Contact = () => {
             <input type='text' name='last-name' placeholder='Last Name' required/>
           </div>
           <div className='fields'>
-            <input type='tel' id='phone' name='phone' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' placeholder='Format: 123-456-7890' required/>
+            <input type='tel' id='phone' name='phone' pattern='[0-9]{3}-[0-9]{3}-[0-9]{4}' placeholder='Phone# (123-456-7890)' required/>
             <input type='email' name='email' placeholder='Email' required/>
           </div>
           <textarea name='message' placeholder='Your Message' className='full-width' rows='13'required/>
