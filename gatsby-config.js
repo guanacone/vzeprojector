@@ -7,7 +7,7 @@
 module.exports = {
   siteMetadata: {
     title: 'VZE Projector',
-    siteUrl: 'https://vze.live',
+    siteUrl: 'https://vzeprojector.com',
     description: 'Portable music projector',
   },
   /* Your site config here */

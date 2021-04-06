@@ -20,14 +20,6 @@ const StyledSection = styled.section`
     }
   }
 
-  .live {
-    display: block;
-    color: #4d4d4d;
-    text-align: center;
-    font-size: 1rem;
-    margin-bottom: 10px;
-  }
-
   .image-container {
     display: flex;
     justify-content: center;
@@ -95,7 +87,6 @@ const BuyNow = ({ data }) => {
             <GatsbyImage id='zoom' image={images[2]} alt='picture' />
           </div>
           <div>
-            <span className='live'>vze.live</span>
             <p>
               <span className='promo-price'>$299.95</span>
               <span className='regular-price'>$350.00</span>
