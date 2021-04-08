@@ -16,9 +16,12 @@ const StyledSection = styled.section`
       resize: none;
     }
 
-    input[type="button"] {
+    button {
+      width: 12vw;
       background: var(--blue);
       padding: 15px;
+      border: none;
+      outline: none;
     }
 
     textarea {
